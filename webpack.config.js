@@ -36,6 +36,11 @@ module.exports = (env = {}) => {
                 }
             }),
             new CleanWebpackPlugin(),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {from: 'public/assets/', to: ''}
+                ]
+            }),
             new MiniCssExtractPlugin({
                 filename: 'main-[hash:8].css'
             })
@@ -123,7 +128,7 @@ module.exports = (env = {}) => {
         },
         plugins: getPlugins(),
         devServer: {
-            contentBase: path.resolve(__dirname, 'dist'),
+            contentBase: path.resolve(__dirname, 'dist')
         },
         optimization: optimization(),
         devtool: isDev ? 'source-map' : '',

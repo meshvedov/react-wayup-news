@@ -1,0 +1,29 @@
+
+
+.header {
+    padding: 45px 0;
+}
+
+.header-title {
+    font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  font-size: 18px;
+
+  &__item:not(:last-child) {
+    margin-right: 35px;
+  }
+
+  &__item > a {
+    color: $main-color;
+  }
+
+  &__item:hover > a {
+    color: $hover-color;
+    text-decoration: none;
+  }
+}
+
+

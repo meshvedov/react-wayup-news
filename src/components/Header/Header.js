@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import {
+    BrowserRouter as Router,
+    Link
+} from 'react-router-dom'
 
-import './Header.scss'
+// import './_Header.scss'
 
 export default class Header extends Component {
 
@@ -9,17 +13,35 @@ export default class Header extends Component {
     }
 
     click = () => {
-        this.setState({
+        this.setState( {
             header: 'Click'
-        })
+        } )
     }
 
     render() {
         return (
-            <div>
-                <h2>{this.state.header}</h2>
-                <button onClick={this.click}>Click</button>
-            </div>
+            <header className='header'>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-2'>
+                            <h2 className='header-title'>Новостник</h2>
+                        </div>
+                        <div className="col-4 ml-auto">
+                            <ul className="menu d-flex justify-content-end">
+                                <li className='menu__item'>
+                                    <Link to='/'>Главная</Link>
+                                </li>
+                                <li className='menu__item'>
+                                    <Link to='/news'>Новости</Link>
+                                </li>
+                                <li className='menu__item'>
+                                    <Link to='/contact'>Контакты</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
         )
     }
 }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import '../SCSS/style.scss'
 import Header from '../Header'
+import Footer from '../Footer'
 
 import { getData } from '../Client/Client'
 
@@ -25,14 +26,14 @@ class App extends React.Component {
             <Router>
                 <Header/>
                 {
-                    (this.state.news.map( (n, i) => (
-                        <div key={i}>
-                            <p>{n.title}</p>
-                            <hr/>
-                        </div>
-                    ) ))
+                    // (this.state.news.map( (n, i) => (
+                    //     <div key={i}>
+                    //         <p>{n.title}</p>
+                    //         <hr/>
+                    //     </div>
+                    // ) ))
                 }
-
+                <Footer/>
             </Router>
         )
     }

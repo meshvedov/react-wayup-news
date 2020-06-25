@@ -5,16 +5,6 @@ import {
 
 export default class Header extends Component {
 
-    state = {
-        header: 'Header!'
-    }
-
-    click = () => {
-        this.setState( {
-            header: 'Click'
-        } )
-    }
-
     render() {
         return (
             <header className='header'>
@@ -26,7 +16,7 @@ export default class Header extends Component {
                         <div className="col-4 ml-auto">
                             <ul className="menu d-flex justify-content-end">
                                 <li className='menu__item'>
-                                    <Link to='/'>Главная</Link>
+                                    <Link to='/main'>Главная</Link>
                                 </li>
                                 <li className='menu__item'>
                                     <Link to='/news'>Новости</Link>

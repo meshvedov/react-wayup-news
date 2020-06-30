@@ -5,8 +5,11 @@ import '../SCSS/style.scss'
 import Header from '../Header'
 import Footer from '../Footer'
 import News from '../News'
+import Error from '../Error'
 
 import { getData } from '../Client/Client'
+import Contacts from '../Contacts';
+import SingleNews from '../SingleNews'
 
 class App extends React.Component {
 
@@ -25,6 +28,18 @@ class App extends React.Component {
         )
     }
 
+    singleNews = () => {
+        return this.state.news.map( (item, i) => (
+            <Route exact={true} path={`/news/${i}`} key={i}>
+                <SingleNews
+                    title={item.title}
+                    content={item.description}
+                    img={item.urlToImage}
+                />
+            </Route>
+        ) )
+    }
+
     sliceNews = (n) => {
         return this.state.news.slice( 0, n )
     }
@@ -34,27 +49,33 @@ class App extends React.Component {
             <Router>
                 <Header/>
 
-
                 <Switch>
-                    <Route exact path='/'>
-                        <Redirect to='/main'/>
-                    </Route>
-                    <Route exact
+                    <Route exact={true}
                            path='/main'
                     >
-                        <News news={this.state.news} />
+                        <News news={this.sliceNews( 6 )}/>
                     </Route>
 
-
-                    <Route exact
+                    <Route exact={true}
                            path='/news'
                     >
                         <News news={this.sliceNews( 18 )}/>
                     </Route>
 
+                    <Route exact={true} path='/contact' component={Contacts}/>
+
+                    <Route exact path='/'>
+                        <Redirect to='/main'/>
+                    </Route>
+
+                    {this.singleNews()}
+
+                    <Route
+                        path='*'
+                        component={Error}
+                    />
 
                 </Switch>
-
 
                 <Footer/>
             </Router>

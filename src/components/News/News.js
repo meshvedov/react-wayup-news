@@ -1,30 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
-export default class extends React.Component {
-
-    state = {
-        news: []
-    }
-
-    componentDidUpdate() {
-        this.setState({
-            news: this.props.news
-        })
-    }
-
-    render() {
-        return (
-            <>
-                <h2>News {this.state.news.length}</h2>
-                {
-                    (this.state.news.map( (n, i) => (
-                        <div key={i}>
-                            <p>{n.title}</p>
-                            <hr/>
-                        </div>
-                    ) ))
-                }
-            </>
-        )
-    }
+export default function (props) {
+    return (
+        <div>
+            <h2>News {props.news.length}</h2>
+            {
+                props.news.map( (n, i) => (
+                    <div key={i}>
+                        <Link to={`/news/${i}`}>{n.title}</Link>
+                        <hr/>
+                    </div>
+                ) )
+            }
+        </div>
+    )
 }

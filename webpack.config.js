@@ -128,7 +128,8 @@ module.exports = (env = {}) => {
         },
         plugins: getPlugins(),
         devServer: {
-            contentBase: path.resolve(__dirname, 'dist')
+            contentBase: path.resolve(__dirname, 'dist'),
+            historyApiFallback: true
         },
         optimization: optimization(),
         devtool: isDev ? 'source-map' : '',

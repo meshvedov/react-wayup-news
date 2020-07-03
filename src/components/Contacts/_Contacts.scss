@@ -1,0 +1,40 @@
+.contacts-img {
+    //background: $main-color url("/img/foto.jpg") no-repeat center center / cover;
+}
+
+.contacts-phone {
+    font-size: 60px;
+    line-height: 93%;
+}
+
+.contacts {
+    padding: 50px 0 90px;
+
+    &__name {
+        font-size: 25px;
+        line-height: 30px;
+        border-left: 2px solid $hover-color;
+        padding-left: 23px;
+    }
+
+    &__mail {
+        font-size: 20px;
+        margin-top: 25px;
+        margin-bottom: 52px;
+
+        & > a {
+            color: $main-color;
+        }
+    }
+
+    &__special {
+        font-size: 20px;
+        color: rgba(51, 61, 81, 0.5);
+        margin-bottom: 25px;
+    }
+
+    &__skills {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}

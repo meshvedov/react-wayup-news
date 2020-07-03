@@ -1,0 +1,27 @@
+.singleNews__title {
+    line-height: 53px;
+    font-size: 40px;
+}
+
+.singleNews__source {
+    font-size: 25px;
+    line-height: 30px;
+    margin: 30px 0;
+}
+
+.singleNews__date {
+
+}
+
+.image {
+    margin-bottom: 60px;
+
+    & > img {
+        width: 100%;
+    }
+}
+
+.singleNews__content {
+    font-size: 25px;
+    line-height: 35px;
+}

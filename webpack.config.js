@@ -132,6 +132,6 @@ module.exports = (env = {}) => {
             historyApiFallback: true
         },
         optimization: optimization(),
-        devtool: isDev ? 'source-map' : '',
+        devtool: isDev ? 'eval-cheap-module-source-map' : '',
     }
 }

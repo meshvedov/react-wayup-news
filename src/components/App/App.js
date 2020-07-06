@@ -9,8 +9,8 @@ import Error from '../Error'
 
 import { getData } from '../Client/Client'
 import Contacts from '../Contacts';
-import SingleNews from '../SingleNews'
-import contacts from '../../config/contactsConfig';
+import SingleNews from '../SingleNews';
+import routes from '../../config/routersConfig';
 
 class App extends React.Component {
 
@@ -43,31 +43,38 @@ class App extends React.Component {
         return this.state.news.slice( 0, n )
     }
 
+    renderPage = (routes) => {
+        return Object.keys( routes ).map( (key) => {
+            const route = routes[key];
+            return (
+                <Route exact={route.exact}
+                       path={route.path}
+                       key={key}
+                >
+                    {
+                        {
+                            main: <News news={this.sliceNews( route.countNews )} title={route.title}
+                                       isLink={route.isLink}/>,
+                            news: <News news={this.sliceNews( route.countNews )} title={route.title}
+                                        isLink={route.isLink}/>,
+                            contact: <Contacts {...route.data}/>,
+                            redirect: <Redirect to={route.to} />
+
+                        }[key]
+                    }
+
+                </Route>
+            )
+        } )
+    }
+
     render() {
         return (
             <Router>
                 <Header/>
 
                 <Switch>
-                    <Route exact={true}
-                           path='/main'
-                    >
-                        <News news={this.sliceNews()} title={'Всегда свежие новости'} isLink={true}/>
-                    </Route>
-
-                    <Route exact={true}
-                           path='/news'
-                    >
-                        <News news={this.sliceNews( 18 )} title={'Быть в курсе событий'} isLink={false}/>
-                    </Route>
-
-                    <Route exact={true} path='/contact'>
-                        <Contacts {...contacts}/>
-                    </Route>
-
-                    <Route exact path='/'>
-                        <Redirect to='/main'/>
-                    </Route>
+                    {this.renderPage( routes )}
 
                     {this.singleNews()}
 
@@ -75,7 +82,6 @@ class App extends React.Component {
                         path='*'
                         component={Error}
                     />
-
                 </Switch>
 
                 <Footer/>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import '../SCSS/style.scss'
 import Header from '../Header'
@@ -11,26 +12,24 @@ import { getData } from '../Client/Client'
 import Contacts from '../Contacts';
 import SingleNews from '../SingleNews';
 import routes from '../../config/routersConfig';
+import {newsGet} from '../../store/actions'
 
 class App extends React.Component {
 
-    state = {
-        news: []
-    }
-
+    // state = {
+    //     news: []
+    // }
+    //
     componentDidMount() {
         getData().then(
             data => {
-                this.setState( {
-                    news: data
-                } )
-                console.log( data )
+                this.props.getNews(data);
             }
         )
     }
 
     singleNews = () => {
-        return this.state.news.map( (item, i) => (
+        return this.props.news.map( (item, i) => (
             <Route exact={true} path={`/news/${i}`} key={i}>
                 <SingleNews
                     {...item}
@@ -40,7 +39,7 @@ class App extends React.Component {
     }
 
     sliceNews = (n = 6) => {
-        return this.state.news.slice( 0, n )
+        return this.props.news.slice( 0, n )
     }
 
     renderPage = (routes) => {
@@ -58,7 +57,7 @@ class App extends React.Component {
                             news: <News news={this.sliceNews( route.countNews )} title={route.title}
                                         isLink={route.isLink}/>,
                             contact: <Contacts {...route.data}/>,
-                            redirect: <Redirect to={route.to} />
+                            redirect: <Redirect to={'/main'} />
 
                         }[key]
                     }
@@ -69,6 +68,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('props', this.props)
         return (
             <Router>
                 <Header/>
@@ -90,4 +90,17 @@ class App extends React.Component {
     }
 }
 
-export default App
+let mapStateToProps = (state) => {
+    console.log('state ', state.news)
+    return {
+        news: state.news.art
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        getNews: (data) => dispatch(newsGet(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

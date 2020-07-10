@@ -1,6 +1,6 @@
 const newsGet = (data) => {
     return {
-        type: 'NEWS_GET',
+        type: 'FETCH_NEWS_GET',
         data
     }
 }

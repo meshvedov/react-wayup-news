@@ -1,16 +1,22 @@
+.singleNews > a {
+    color: rgba(51, 61, 81, 0.5);
+}
+
 .singleNews__title {
     line-height: 53px;
     font-size: 40px;
 }
 
 .singleNews__source {
+    display: block;
     font-size: 25px;
     line-height: 30px;
     margin: 30px 0;
 }
 
-.singleNews__date {
-
+.singleNews__link {
+    color: rgba(51, 61, 81, 0.5);
+    font-size: 15px;
 }
 
 .image {
